@@ -2,5 +2,8 @@
   "name": "cbbgm-personal",
   "version": "0.3.0",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^10.0.8"
+  }
 }
