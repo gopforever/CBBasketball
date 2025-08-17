@@ -14,9 +14,14 @@ export async function handler(event) {
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ok: true }),
+      body: JSON.stringify({ ok: true })
     };
   } catch (e) {
-    return { statusCode: 500, body: "Error: " + e.message };
+    console.error("blobPut error:", e);
+    return {
+      statusCode: 500,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ error: String(e?.message || e) })
+    };
   }
 }

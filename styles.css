@@ -1,6 +1,5 @@
-
 :root{
-  --bg:#0b0f14; --panel:#121823; --panel2:#151c28; --muted:#8fa3bf; --text:#e8eef8; --accent:#69b3ff; --good:#38d398; --bad:#ff6b6b;
+  --bg:#0b0f14; --panel:#121823; --panel2:#151c28; --muted:#8fa3bf; --text:#e8eef8; --accent:#69b3ff;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
@@ -20,7 +19,6 @@ label.import input{display:none}
 .grid{display:grid;gap:12px}
 .grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-.grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 .table{width:100%;border-collapse:collapse}
 .table th,.table td{padding:8px 10px;border-bottom:1px solid #1b2536;text-align:left}
 .table th{color:var(--muted);font-weight:600}

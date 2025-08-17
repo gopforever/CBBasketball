@@ -13,9 +13,14 @@ export async function handler(event) {
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ key, data: val }),
+      body: JSON.stringify({ key, data: val })
     };
   } catch (e) {
-    return { statusCode: 500, body: "Error: " + e.message };
+    console.error("blobGet error:", e);
+    return {
+      statusCode: 500,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ error: String(e?.message || e) })
+    };
   }
 }

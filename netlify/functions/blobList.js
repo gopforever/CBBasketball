@@ -15,6 +15,11 @@ export async function handler() {
       body: JSON.stringify(mapped)
     };
   } catch (e) {
-    return { statusCode: 500, body: "Error: " + e.message };
+    console.error("blobList error:", e);
+    return {
+      statusCode: 500,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ error: String(e?.message || e) })
+    };
   }
 }

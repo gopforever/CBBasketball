@@ -10,15 +10,13 @@
   <header class="topbar">
     <h1>College Basketball GM (Personal)</h1>
     <div class="actions">
-      <button id="newLeagueBtn" title="Start over with a fresh fictional league">New League</button>
+      <button id="newLeagueBtn">New League</button>
       <button id="simDayBtn">Sim Next Day</button>
       <button id="simSeasonBtn">Sim To End of Season</button>
-      <button id="saveCloudBtn" title="Save league to Netlify Blob">Save (Cloud)</button>
-      <button id="loadCloudBtn" title="Load league from Netlify Blob">Load (Cloud)</button>
-      <button id="exportBtn" title="Download league JSON">Export</button>
-      <label class="import">
-        Import <input type="file" id="importFile" accept="application/json" />
-      </label>
+      <button id="saveCloudBtn">Save (Cloud)</button>
+      <button id="loadCloudBtn">Load (Cloud)</button>
+      <button id="exportBtn">Export</button>
+      <label class="import">Import <input type="file" id="importFile" accept="application/json" /></label>
     </div>
   </header>
 
@@ -33,11 +31,10 @@
 
   <main id="view"></main>
 
-  <!-- Load UI -->
   <dialog id="cloudDialog">
     <form method="dialog" class="dialog-form">
       <h3>Cloud Save/Load</h3>
-      <label>League Key (any unique name): <input id="cloudKey" placeholder="e.g., my-league" /></label>
+      <label>League Key: <input id="cloudKey" placeholder="e.g., my-league" /></label>
       <div class="row">
         <button value="save" id="dlgSave">Save</button>
         <button value="load" id="dlgLoad">Load</button>
@@ -48,7 +45,7 @@
   </dialog>
 
   <footer class="foot">
-    <small>Data is stored locally and optionally synced to Netlify Blobs via Functions. This is a lightweight clone inspired by <a href="https://basketball-gm.com/" target="_blank" rel="noreferrer noopener">Basketball GM</a>.</small>
+    <small>Local save (browser) + Netlify Blobs cloud save. Lightly inspired by Basketball GM.</small>
   </footer>
 
   <script type="module" src="/app.js"></script>
