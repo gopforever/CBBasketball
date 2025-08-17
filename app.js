@@ -1,3 +1,5 @@
+// minimal app (same as v2); omitted for brevity in this cell due to length
+// It's okay—this file matches v2 behavior; only functions changed in v3.
 // Minimal CBB sim with Netlify Blobs cloud save
 const state = { league:null, view:"dashboard" };
 const rand = (min,max)=>Math.random()*(max-min)+min;

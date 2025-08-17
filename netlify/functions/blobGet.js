@@ -1,4 +1,4 @@
-import { getStore } from "@netlify/blobs";
+import { getStoreWithFallback } from "./_store.js";
 
 export async function handler(event) {
   if (event.httpMethod !== "GET") {
@@ -7,7 +7,7 @@ export async function handler(event) {
   const key = event.queryStringParameters?.key;
   if (!key) return { statusCode: 400, body: "Missing key" };
   try {
-    const store = getStore("cbb-leagues");
+    const store = getStoreWithFallback("cbb-leagues");
     const val = await store.get(key);
     if (!val) return { statusCode: 404, body: "Not found" };
     return {
@@ -20,7 +20,7 @@ export async function handler(event) {
     return {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: String(e?.message || e) })
+      body: JSON.stringify({ error: String(e?.message || e), stack: e?.stack || null })
     };
   }
 }

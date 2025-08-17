@@ -1,4 +1,4 @@
-import { getStore } from "@netlify/blobs";
+import { getStoreWithFallback } from "./_store.js";
 
 export async function handler(event) {
   if (event.httpMethod !== "POST") {
@@ -9,7 +9,7 @@ export async function handler(event) {
     if (!key || !data) {
       return { statusCode: 400, body: "Missing key or data" };
     }
-    const store = getStore("cbb-leagues");
+    const store = getStoreWithFallback("cbb-leagues");
     await store.set(key, data, { metadata: { updatedAt: Date.now() } });
     return {
       statusCode: 200,
@@ -21,7 +21,7 @@ export async function handler(event) {
     return {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: String(e?.message || e) })
+      body: JSON.stringify({ error: String(e?.message || e), stack: e?.stack || null })
     };
   }
 }

@@ -1,8 +1,8 @@
-import { getStore } from "@netlify/blobs";
+import { getStoreWithFallback } from "./_store.js";
 
 export async function handler() {
   try {
-    const store = getStore("cbb-leagues");
+    const store = getStoreWithFallback("cbb-leagues");
     const list = await store.list();
     const mapped = (list?.blobs || []).map(b => ({
       key: b.key,
@@ -19,7 +19,7 @@ export async function handler() {
     return {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: String(e?.message || e) })
+      body: JSON.stringify({ error: String(e?.message || e), stack: e?.stack || null })
     };
   }
 }
