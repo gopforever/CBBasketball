@@ -1,0 +1,21 @@
+import { getStore } from "@netlify/blobs";
+
+export async function handler(event) {
+  if (event.httpMethod !== "GET") {
+    return { statusCode: 405, body: "Method Not Allowed" };
+  }
+  const key = event.queryStringParameters?.key;
+  if (!key) return { statusCode: 400, body: "Missing key" };
+  try {
+    const store = getStore("cbb-leagues");
+    const val = await store.get(key);
+    if (!val) return { statusCode: 404, body: "Not found" };
+    return {
+      statusCode: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key, data: val }),
+    };
+  } catch (e) {
+    return { statusCode: 500, body: "Error: " + e.message };
+  }
+}
